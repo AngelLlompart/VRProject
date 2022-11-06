@@ -28,7 +28,7 @@ public class GunController : MonoBehaviour
             _angles.y = Mathf.Clamp(_angles.y, -_maxAngles, _maxAngles);
             
             _angles.x += rotateVertical * sensitivity;
-            _angles.x = Mathf.Clamp(_angles.x, -_maxAngles-107, _maxAngles);
+            _angles.x = Mathf.Clamp(_angles.x, -_maxAngles, _maxAngles);
 
             gameObject.transform.rotation = Quaternion.Euler(_angles);
         }
