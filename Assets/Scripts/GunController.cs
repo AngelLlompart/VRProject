@@ -5,10 +5,14 @@ using UnityEngine;
 public class GunController : MonoBehaviour
 {
     public float sensitivity = 5.0f;
+    public GameObject bullet;
+    public GameObject bulletSpawner;
+    public float bulletSpeed = 10.0f;
 
     private Vector3 _angles = Vector3.zero;
 
     private readonly float _maxAngles = 60.0f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -36,5 +40,19 @@ public class GunController : MonoBehaviour
         {
             Cursor.lockState = CursorLockMode.None;
         }
+
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(1))
+        {
+            Shoot();
+        }
+    }
+
+    private void Shoot()
+    {
+        GameObject newBullet = Instantiate(bullet, bulletSpawner.transform.position, Quaternion.identity);
+        //newBullet.transform.position = transform.position;
+        //newBullet.transform.rotation = transform.rotation;
+
+        newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward * bulletSpeed * Time.deltaTime;
     }
 }
