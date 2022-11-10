@@ -41,7 +41,7 @@ public class GunController : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(1))
+        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(1))
         {
             Shoot();
         }
@@ -49,10 +49,10 @@ public class GunController : MonoBehaviour
 
     private void Shoot()
     {
-        GameObject newBullet = Instantiate(bullet, bulletSpawner.transform.position, Quaternion.identity);
+        GameObject newBullet = Instantiate(bullet, bulletSpawner.transform.position, transform.rotation);
         //newBullet.transform.position = transform.position;
         //newBullet.transform.rotation = transform.rotation;
 
-        newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward * bulletSpeed * Time.deltaTime;
+        newBullet.GetComponent<Rigidbody>().velocity = newBullet.transform.forward * bulletSpeed; //* Time.deltaTime;
     }
 }
